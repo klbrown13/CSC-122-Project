@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title%}Public Library Job Board{% endblock title%}
+
+{% block content %}
+{% for post in post_list %}
+
+<a href="#">{{ post.title }}</a><br>
+{{ post.company }} <br>
+{{ post.location }} <br>
+{{ post.body }} <br>
+<a href="#">Edit</a> <a href="#">Delete</a>
+<br><br>
+{% endfor %}
+{% endblock content %}
