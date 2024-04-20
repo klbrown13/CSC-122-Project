@@ -4,12 +4,52 @@
 
 {% block content %}
 {% for post in post_list %}
+<div class="card">
+    <div class="card-header">
+        <span class="fw-bold">
+            <a href="{{ post.get_absolute_url }}">{{ post.title }}</a><br>
+        </span>
+        <span class="text-muted">{{ post.company }} | {{ post.location }} </span> <br>
+        {% if post.job_type == 'Full-Time' %}
+            <span class="badge badge-pill bg-dark">Full-Time</span>
+        
+        {% elif post.job_type == 'Part-Time'%}
+        <span class="badge badge-pill bg-success">Part-Time</span>
+        {% endif %}
 
-<a href="#">{{ post.title }}</a><br>
-{{ post.company }} <br>
-{{ post.location }} <br>
-{{ post.body }} <br>
-<a href="#">Edit</a> <a href="#">Delete</a>
-<br><br>
+        {% if post.internship_status == 'Internship' %}
+            <span class="badge badge-pill bg-primary">Internship</span>
+        
+        {% elif post.internship_status == 'Not an Internship'%}
+        <span class="badge badge-pill bg-secondary">Not an Internship</span>
+        {% endif %}
+        
+        
+    </div>
+    <div class="card-body">{{ post.body }}</div>
+    <div class="card-footer text-center text-muted">
+        {% if post.author.pk == request.user.pk %}
+        <p><a href="{% url 'post_edit' post.pk %}">Edit</a>
+            <a href="{% url 'post_delete' post.pk %}">Delete</a>
+        </p>
+        {% endif %}
+
+        
+        <a href="{{ post.get_absolute_url }}">Add a Comment</a>
+    </div>
+    <div class="card-footer">
+        {% for comment in post.comment_set.all %}
+        <p>
+            <span class="fw-bold">
+                {{ comment.author }} &middot; 
+            </span>
+            {{ comment }}
+        </p>
+        {% endfor %}
+    </div>
+</div>
+
+ <br>
+ <br>
 {% endfor %}
 {% endblock content %}

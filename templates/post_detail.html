@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+<title>{% block title %}Public Library Job Board - Job Detail {% endblock title %}</title>
+
+{% block content %}
+<div class="post-entry">
+    <h2>{{ post.title }}</h2>
+    <p>by {{post.author}} | Posted: {{ post.date }}</p> 
+    <p>{{ post.body }}</p>
+    <p class="fw-bold">{{ post.job_type }} | {{ post.internship_status }}</p> 
+</div>
+
+<hr>
+<h4>Comments</h4>
+{% for comment in post.comment_set.all%}
+<p>{{ comment.date }}</p>
+<p>{{ comment.author }} &middot;  {{ comment }} </p>
+{% endfor %}
+<hr>
+
+<h4>Add a comment</h4>
+<form action="" method="post">{% csrf_token %}
+    {{ form|crispy }}
+    <button class="btn btn-success ml-2" type="submit">Save</button>
+</form>
+
+<div>
+    
+    {% if post.author.pk == request.user.pk %}
+    <p><a href="{% url 'post_edit' post.pk %}">Edit</a>
+        <a href="{% url 'post_delete' post.pk %}">Delete</a>
+    </p>
+    {% endif %} 
+    <p>Back to <a href="{% url 'post_list' %}">All Posts</a>.</p>
+</div>
+{% endblock content %}
