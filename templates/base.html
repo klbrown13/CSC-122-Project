@@ -49,7 +49,11 @@
             </div>
             <p>This public library job board is designed for anyone interested in entering the public library field. 
               Take a look at the job available and take note of the education and skills needed. 
+              {% if user.is_authenticated %}
+              <br><p>Welcome to the job board! </p>
+              {% else %}
               <br><p>You must login, or create an account in order to access the job board. </p>
+              {% endif %}
             </p>
           </header>
           <main>

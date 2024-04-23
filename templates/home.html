@@ -10,7 +10,7 @@
     <p><a href="{% url 'logout' %}">Log Out</a></p>
     <p><a class="btn btn-primary btn-lg" href="{% url 'post_list' %}" role="button">View all Posts</a></p>
 {% else %}
-    <p>You are not logged in</p>
+    <p>You are not logged in. Click one of the links below.</p>
     <a href="{% url 'login' %}">Log In</a> |
     <a href="{% url 'signup' %}">Sign Up</a>
 {% endif %}
