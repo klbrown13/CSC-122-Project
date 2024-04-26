@@ -6,6 +6,7 @@ STATUS = (("Looking for Work", "Looking for Work"),
           ("Looking for an Internship", "Looking for an Internship"))
 JOB_TYPE = (("Full-Time", "Full-Time"),
           ("Part-Time", "Part-Time"))
+
 # Create your models here.
 class CustomUser(AbstractUser):
     age = models.PositiveIntegerField(null=True, blank=True)

@@ -23,8 +23,6 @@
         {% elif post.internship_status == 'Not an Internship'%}
         <span class="badge badge-pill bg-secondary">Not an Internship</span>
         {% endif %}
-        
-        
     </div>
     <div class="card-body">{{ post.body }}</div>
     <div class="card-footer text-center text-muted">
@@ -33,8 +31,6 @@
             <a href="{% url 'post_delete' post.pk %}">Delete</a>
         </p>
         {% endif %}
-
-        
         <a href="{{ post.get_absolute_url }}">Add a Comment</a>
     </div>
     <div class="card-footer">
@@ -48,8 +44,9 @@
         {% endfor %}
     </div>
 </div>
-
- <br>
  <br>
 {% endfor %}
+<button type="button" class="btn btn-light"><a href="#">Return to Top</a></button>
+<br>
+<br>
 {% endblock content %}

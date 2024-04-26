@@ -18,15 +18,12 @@
 <p>{{ comment.author }} &middot;  {{ comment }} </p>
 {% endfor %}
 <hr>
-
 <h4>Add a comment</h4>
 <form action="" method="post">{% csrf_token %}
     {{ form|crispy }}
     <button class="btn btn-success ml-2" type="submit">Save</button>
 </form>
-
 <div>
-    
     {% if post.author.pk == request.user.pk %}
     <p><a href="{% url 'post_edit' post.pk %}">Edit</a>
         <a href="{% url 'post_delete' post.pk %}">Delete</a>
